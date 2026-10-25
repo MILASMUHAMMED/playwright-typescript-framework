@@ -1,11 +1,12 @@
-import { test, expect } from "../../fixtures/test";
+import { test, expect } from "@fixtures/test";
+import { env } from "@config/env";
 
 test.beforeEach(async ({ loginPage }) => {
   await loginPage.goto();
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(env.standardUser, env.standardPassword);
 });
 
-test("adding two items shows 2 on the cart badge", async ({
+test("@smoke @ui adding two items shows 2 on the cart badge", async ({
   inventoryPage,
 }) => {
   await expect(inventoryPage.pageTitle).toHaveText("Products");
@@ -16,7 +17,7 @@ test("adding two items shows 2 on the cart badge", async ({
   await expect(inventoryPage.shoppingCartBadge).toHaveText("2");
 });
 
-test("sorting by price low to high orders products correctly", async ({
+test("@regression @ui sorting by price low to high orders products correctly", async ({
   inventoryPage,
 }) => {
   await expect(inventoryPage.pageTitle).toHaveText("Products");

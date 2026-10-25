@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 import { env } from './config/env';
 
 const isCI = !!process.env.CI;
+const authFile = '.auth/user.json';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -21,16 +22,23 @@ export default defineConfig({
 
   projects: [
     {
+      name: 'setup',
+      testMatch: /auth\.setup\.ts/,
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], storageState: authFile },
+      dependencies: ['setup'],
     },
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'], storageState: authFile },
+      dependencies: ['setup'],
     },
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'], storageState: authFile },
+      dependencies: ['setup'],
     },
   ],
 });

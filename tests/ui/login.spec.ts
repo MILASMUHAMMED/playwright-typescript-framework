@@ -1,6 +1,9 @@
 import { test, expect } from "@fixtures/test";
 import { env } from "@config/env";
 
+// Login tests must start from a signed-out state.
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test("valid login lands on the inventory page", { tag: ["@smoke", "@ui"] }, async ({
   page,
   loginPage,

@@ -1,24 +1,25 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "@fixtures/test";
+import { env } from "@config/env";
 
-test("valid login lands on the inventory page", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com/");
-
-  await page.getByTestId("username").fill("standard_user");
-  await page.getByTestId("password").fill("secret_sauce");
-  await page.getByTestId("login-button").click();
+test("valid login lands on the inventory page", { tag: ["@smoke", "@ui"] }, async ({
+  page,
+  loginPage,
+  inventoryPage,
+}) => {
+  await loginPage.goto();
+  await loginPage.login(env.standardUser, env.standardPassword);
 
   await expect(page).toHaveURL(/inventory\.html/);
-  await expect(page.getByTestId("title"))
-    .toHaveText("Products");
+  await expect(inventoryPage.pageTitle).toHaveText("Products");
 });
 
-test("locked out user sees an error message", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com/");
+test("locked out user sees an error message", { tag: ["@regression", "@ui"] }, async ({
+  loginPage,
+}) => {
+  await loginPage.goto();
+  await loginPage.login(env.lockedOutUser, env.lockedOutPassword);
 
-  await page.getByTestId("username").fill("locked_out_user");
-  await page.getByTestId("password").fill("secret_sauce");
-  await page.getByTestId("login-button").click();
-
-  await expect(page.getByTestId("error"))
-    .toHaveText("Epic sadface: Sorry, this user has been locked out.");
+  await expect(loginPage.errorMessage).toHaveText(
+    "Epic sadface: Sorry, this user has been locked out."
+  );
 });

@@ -1,7 +1,7 @@
 import { test, expect } from "@fixtures/test";
 import { env } from "@config/env";
 
-test("@smoke @ui valid login lands on the inventory page", async ({
+test("valid login lands on the inventory page", { tag: ["@smoke", "@ui"] }, async ({
   page,
   loginPage,
   inventoryPage,
@@ -13,7 +13,7 @@ test("@smoke @ui valid login lands on the inventory page", async ({
   await expect(inventoryPage.pageTitle).toHaveText("Products");
 });
 
-test("@regression @ui locked out user sees an error message", async ({
+test("locked out user sees an error message", { tag: ["@regression", "@ui"] }, async ({
   loginPage,
 }) => {
   await loginPage.goto();

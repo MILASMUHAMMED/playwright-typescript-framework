@@ -1,5 +1,4 @@
 import { type Locator, type Page } from "@playwright/test";
-import { env } from "@config/env";
 
 export class LoginPage {
   readonly page: Page;
@@ -17,7 +16,7 @@ export class LoginPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto(env.baseUrl);
+    await this.page.goto("");
   }
 
   async login(username: string, password: string): Promise<void> {

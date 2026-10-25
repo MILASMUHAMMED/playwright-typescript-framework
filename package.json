@@ -17,7 +17,8 @@
   "homepage": "https://github.com/MILASMUHAMMED/playwright-typescript-framework#readme",
   "devDependencies": {
     "@playwright/test": "^1.64.1",
-    "@types/node": "^26.6.5"
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "dotenv": "^18.0.9"
@@ -26,6 +27,7 @@
     "test": "playwright test",
     "test:smoke": "playwright test --grep @smoke",
     "test:api": "playwright test --grep @api",
-    "test:ui": "playwright test --grep @ui"
+    "test:ui": "playwright test --grep @ui",
+    "typecheck": "tsc --noEmit"
   }
 }

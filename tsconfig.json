@@ -1,17 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "strict": true,
     "esModuleInterop": true,
     "types": ["node"],
-    "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@fixtures/*": ["fixtures/*"],
-      "@config/*": ["config/*"]
+      "@pages/*": ["./pages/*"],
+      "@fixtures/*": ["./fixtures/*"],
+      "@config/*": ["./config/*"]
     }
   },
   "include": ["pages/**/*.ts", "fixtures/**/*.ts", "config/**/*.ts", "tests/**/*.ts", "playwright.config.ts"]

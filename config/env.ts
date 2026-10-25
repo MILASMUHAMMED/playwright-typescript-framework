@@ -1,9 +1,5 @@
 import "dotenv/config";
 
-declare const process: {
-  env: Record<string, string | undefined>;
-};
-
 function requiredEnv(name: string): string {
   const value = process.env[name];
 

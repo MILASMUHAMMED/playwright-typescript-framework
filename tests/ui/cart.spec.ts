@@ -6,7 +6,7 @@ test.beforeEach(async ({ loginPage }) => {
   await loginPage.login(env.standardUser, env.standardPassword);
 });
 
-test("@smoke @ui adding two items shows 2 on the cart badge", async ({
+test("adding two items shows 2 on the cart badge", { tag: ["@smoke", "@ui"] }, async ({
   inventoryPage,
 }) => {
   await expect(inventoryPage.pageTitle).toHaveText("Products");
@@ -17,7 +17,7 @@ test("@smoke @ui adding two items shows 2 on the cart badge", async ({
   await expect(inventoryPage.shoppingCartBadge).toHaveText("2");
 });
 
-test("@regression @ui sorting by price low to high orders products correctly", async ({
+test("sorting by price low to high orders products correctly", { tag: ["@regression", "@ui"] }, async ({
   inventoryPage,
 }) => {
   await expect(inventoryPage.pageTitle).toHaveText("Products");

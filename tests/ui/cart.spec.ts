@@ -1,9 +1,7 @@
 import { test, expect } from "@fixtures/test";
-import { env } from "@config/env";
 
-test.beforeEach(async ({ loginPage }) => {
-  await loginPage.goto();
-  await loginPage.login(env.standardUser, env.standardPassword);
+test.beforeEach(async ({ inventoryPage }) => {
+  await inventoryPage.goto();
 });
 
 test("adding two items shows 2 on the cart badge", { tag: ["@smoke", "@ui"] }, async ({

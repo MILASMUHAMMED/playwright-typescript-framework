@@ -1,11 +1,10 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../../pages/LoginPage";
-import { InventoryPage } from "../../pages/InventoryPage";
+import { test, expect } from "../../fixtures/test";
 
-test("valid login lands on the inventory page", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const inventoryPage = new InventoryPage(page);
-
+test("valid login lands on the inventory page", async ({
+  page,
+  loginPage,
+  inventoryPage,
+}) => {
   await loginPage.goto();
   await loginPage.login("standard_user", "secret_sauce");
 
@@ -13,9 +12,9 @@ test("valid login lands on the inventory page", async ({ page }) => {
   await expect(inventoryPage.pageTitle).toHaveText("Products");
 });
 
-test("locked out user sees an error message", async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
+test("locked out user sees an error message", async ({
+  loginPage,
+}) => {
   await loginPage.goto();
   await loginPage.login("locked_out_user", "secret_sauce");
 

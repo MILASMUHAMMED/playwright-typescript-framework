@@ -1,17 +1,13 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../../pages/LoginPage";
-import { InventoryPage } from "../../pages/InventoryPage";
+import { test, expect } from "../../fixtures/test";
 
-test.beforeEach(async ({ page }) => {
-  const loginPage = new LoginPage(page);
-
+test.beforeEach(async ({ loginPage }) => {
   await loginPage.goto();
   await loginPage.login("standard_user", "secret_sauce");
 });
 
-test("adding two items shows 2 on the cart badge", async ({ page }) => {
-  const inventoryPage = new InventoryPage(page);
-
+test("adding two items shows 2 on the cart badge", async ({
+  inventoryPage,
+}) => {
   await expect(inventoryPage.pageTitle).toHaveText("Products");
 
   await inventoryPage.addBackpackToCart();
@@ -21,10 +17,8 @@ test("adding two items shows 2 on the cart badge", async ({ page }) => {
 });
 
 test("sorting by price low to high orders products correctly", async ({
-  page,
+  inventoryPage,
 }) => {
-  const inventoryPage = new InventoryPage(page);
-
   await expect(inventoryPage.pageTitle).toHaveText("Products");
   await expect(inventoryPage.inventoryItemPrices).toHaveCount(6);
 

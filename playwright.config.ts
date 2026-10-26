@@ -27,18 +27,26 @@ export default defineConfig({
     },
     {
       name: 'chromium',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Chrome'], storageState: authFile },
       dependencies: ['setup'],
     },
     {
       name: 'firefox',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Firefox'], storageState: authFile },
       dependencies: ['setup'],
     },
     {
       name: 'webkit',
+      testDir: './tests/ui',
       use: { ...devices['Desktop Safari'], storageState: authFile },
       dependencies: ['setup'],
+    },
+    {
+      name: 'api',
+      testDir: './tests/api',
+      use: { baseURL: env.apiUrl },
     },
   ],
 });

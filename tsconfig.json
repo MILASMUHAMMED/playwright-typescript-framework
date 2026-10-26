@@ -9,8 +9,9 @@
     "paths": {
       "@pages/*": ["./pages/*"],
       "@fixtures/*": ["./fixtures/*"],
-      "@config/*": ["./config/*"]
+      "@config/*": ["./config/*"],
+      "@api/*": ["./api/*"]
     }
   },
-  "include": ["pages/**/*.ts", "fixtures/**/*.ts", "config/**/*.ts", "tests/**/*.ts", "playwright.config.ts"]
+  "include": ["pages/**/*.ts", "fixtures/**/*.ts", "config/**/*.ts", "api/**/*.ts", "tests/**/*.ts", "playwright.config.ts"]
 }

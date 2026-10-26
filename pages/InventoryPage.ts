@@ -28,7 +28,7 @@ export class InventoryPage {
   }
 
   async goto(): Promise<void> {
-    await this.page.goto("/inventory.html");
+    await this.page.goto("inventory.html");
   }
 
   async addBackpackToCart(): Promise<void> {

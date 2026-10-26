@@ -1,4 +1,5 @@
-import type { APIRequestContext } from "@playwright/test";
+import type { APIRequestContext, APIResponse } from "@playwright/test";
+import { env } from "@config/env";
 
 export interface Booking {
   firstname: string;
@@ -18,8 +19,8 @@ export class BookingClient {
   async authenticate(): Promise<string> {
     const response = await this.request.post("/auth", {
       data: {
-        username: "admin",
-        password: "password123",
+        username: env.apiUsername,
+        password: env.apiPassword,
       },
     });
 
@@ -36,17 +37,17 @@ export class BookingClient {
     return body.token as string;
   }
 
-  async createBooking(booking: Booking) {
+  async createBooking(booking: Booking): Promise<APIResponse> {
     return this.request.post("/booking", {
       data: booking,
     });
   }
 
-  async getBooking(id: number) {
+  async getBooking(id: number): Promise<APIResponse> {
     return this.request.get(`/booking/${id}`);
   }
 
-  async updateBooking(id: number, token: string, booking: Booking) {
+  async updateBooking(id: number, token: string, booking: Booking): Promise<APIResponse> {
     return this.request.put(`/booking/${id}`, {
       headers: {
         Cookie: `token=${token}`,
@@ -55,7 +56,7 @@ export class BookingClient {
     });
   }
 
-  async deleteBooking(id: number, token: string) {
+  async deleteBooking(id: number, token: string): Promise<APIResponse> {
     return this.request.delete(`/booking/${id}`, {
       headers: {
         Cookie: `token=${token}`,

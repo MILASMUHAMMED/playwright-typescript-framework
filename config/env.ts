@@ -13,6 +13,8 @@ function requiredEnv(name: string): string {
 export const env = {
   baseUrl: requiredEnv("BASE_URL"),
   apiUrl: requiredEnv("API_URL"),
+  apiUsername: requiredEnv("API_USERNAME"),
+  apiPassword: requiredEnv("API_PASSWORD"),
   standardUser: requiredEnv("STANDARD_USER"),
   standardPassword: requiredEnv("STANDARD_PASSWORD"),
   lockedOutUser: requiredEnv("LOCKED_OUT_USER"),
